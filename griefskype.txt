@@ -1,0 +1,76 @@
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+; #Warn  ; Enable warnings to assist with detecting common errors.
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+#g::Run www.google.com
+#y::Run www.yahoo.com
+#p::Run www.pandora.com
+#i::Run www.imgur.com
+#f::Run www.facebook.com
+#c::Run www.cracked.com
+#z::
+SetTitleMatchMode, 2
+ifwinactive, ahk_class CabinetWClass
+  ControlGetText, address , edit1, ahk_class CabinetWClass
+else
+  address =
+
+; Exclude specific windows
+
+ifwinactive, My Computer
+  address =
+ifwinactive, My Documents
+  address =
+
+if (address <> "") 
+  Run, cmd.exe, %address%
+else 
+  Run, cmd.exe, C:\Users\ursinewalrus\Desktop\Grief
+
+Sleep,100
+Send java -jar griefer.jar {Enter} 
+
+
+Sleep,200
+IfWinExist Grief The Skype
+{
+    WinActivate
+}
+Loop 50
+{ ;1
+IfWinExist draw.txt - Notepad
+{ ;2
+WinActivate
+Sleep,200
+Send ^a
+Sleep,30
+Send ^c
+Sleep,200
+Send !{f4}
+IfWinExist Skype™ - ursinewalrus
+{ ;3
+    WinActivate
+    Sleep,100
+} ;3
+;ControlFocus, TChatRichEdit5 seems to change
+Sleep,300
+Send ^v {Enter}
+return
+} ;2
+else
+{ ;4
+Sleep,200
+} ;4
+} ;1
+IfWinExist Command Prompt
+{
+    WinActivate
+Send {Alt Down}{Space Down}c {Alt Up}{Space Up}  
+}
+
+
+
+
+
+
+
